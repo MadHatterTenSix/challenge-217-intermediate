@@ -35,11 +35,11 @@ int   nextInt          (char *s, int *startIndex);
 char* nextString       (char *s, int *startIndex);
 char* toLower          (char *s);
 
-char* decryptOmnicronV (char *message);
-char* decryptHoth      (char *message);
-char* decryptRyzaIV    (char *message);
-char* decryptHtrae     (char *message);
-void printDecryptedMessage (char *message, const char *sourcePlanet);
+char* decryptOmnicronV      (char *message);
+char* decryptHoth           (char *message);
+char* decryptRyzaIV         (char *message);
+char* decryptHtrae          (char *message);
+void  printDecryptedMessage (char *message, const char *sourcePlanet);
 
 int main (void)
 {
