@@ -39,6 +39,7 @@ char* decryptOmnicronV (char *message);
 char* decryptHoth      (char *message);
 char* decryptRyzaIV    (char *message);
 char* decryptHtrae     (char *message);
+void printDecryptedMessage (char *message, const char *sourcePlanet);
 
 int main (void)
 {
@@ -110,16 +111,16 @@ int main (void)
         
     /* Decrypt message and determine origin. */    
     if (isMessageEnglish (dictionary, numberOfWords, decryptedMessage = decryptOmnicronV (formatted)) != 0) {
-      printf ("%-10s : %s\n", "Omnicron V", decryptedMessage);
+      printDecryptedMessage (decryptedMessage, "Omnicron V");
     }
     else if (isMessageEnglish (dictionary, numberOfWords, decryptedMessage = decryptHoth (formatted)) != 0) {
-      printf ("%-10s : %s\n", "Hoth", decryptedMessage);
+      printDecryptedMessage (decryptedMessage, "Hoth");
     }
     else if (isMessageEnglish (dictionary, numberOfWords, decryptedMessage = decryptRyzaIV (formatted)) != 0) {
-      printf ("%-10s : %s\n", "Ryza IV", decryptedMessage);
+      printDecryptedMessage (decryptedMessage, "Ryza IV");
     }
     else if (isMessageEnglish (dictionary, numberOfWords, decryptedMessage = decryptHtrae (formatted)) != 0) {
-      printf ("%-10s : %s\n", "Htrae", decryptedMessage);
+      printDecryptedMessage (decryptedMessage, "Htrae");
     }
     else {
       printf ("[%02d] %s : %s\n", i, "**UNKNOWN**", message);
@@ -397,4 +398,10 @@ decryptHtrae (char *message)
   decryptedMessage[j] = '\0';
   
   return decryptedMessage;
+}
+
+void
+printDecryptedMessage (char *message, const char *sourcePlanet)
+{
+  printf ("%-10s : %s\n", sourcePlanet, message);
 }
