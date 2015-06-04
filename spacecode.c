@@ -17,6 +17,7 @@
   Htrae: reverses the characters.
 */
 
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -32,6 +33,7 @@ int   isMessageEnglish (char **dictionary, long n_words, char *message);
 int   isWordFound      (char **dictionary, long n_words, char *word);
 int   nextInt          (char *s, int *startIndex);
 char* nextString       (char *s, int *startIndex);
+char* toLower          (char *s);
 
 char* decryptOmnicronV (char *message);
 char* decryptHoth      (char *message);
@@ -204,7 +206,7 @@ isMessageEnglish (char **dictionary, long n_words, char *message)
   numberOfWords = 0;
   while (index < len) {
     nextWord = nextString (message, &index);
-    if (isWordFound (dictionary, n_words, nextWord) != 0) {
+    if (isWordFound (dictionary, n_words, toLower (nextWord)) != 0) {
       numberOfWordsFound++;
     }
     numberOfWords++;
@@ -280,6 +282,27 @@ nextString (char *s, int *startIndex)
   
   /* Return next word. */
   return newWord;
+}
+
+char*
+toLower (char *s)
+{
+  int i;
+  int len;
+  int lower;
+  char *lowerS;
+  
+  len = (int) strlen (s);
+  lowerS = (char *) malloc (sizeof (char) * (unsigned int) (len + 1));
+  
+  for (i = 0; i < len; i++) {
+    lower = (int) s[i];
+    lower = tolower (lower);
+    lowerS[i] = (char) lower;
+  }
+  lowerS[i] = '\0';
+  
+  return lowerS;
 }
 
 char*
