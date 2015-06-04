@@ -185,7 +185,7 @@ getNumberOfLines (const char *filename)
 }
 
 /*
- * Message is considered English if at least 40% of the words 
+ * Message is considered English if at least 30% of the words 
  * are found in the American-English dictionary... just like in America :D
  */
 int
@@ -212,7 +212,7 @@ isMessageEnglish (char **dictionary, long n_words, char *message)
   
   match = (float) ((float) numberOfWordsFound / (float) numberOfWords);
   
-  return ((match >= (float) 0.4) ? 1 : 0);
+  return ((match >= (float) 0.3) ? 1 : 0);
 }
 
 int
